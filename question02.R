@@ -31,10 +31,10 @@ describe(df)
 # appropriate GLM to model homekick to togo, ydline and kicker
 # variables.
 
+df <- na.omit(df)
 
 # Split the dataset into 80 train and 20 test.
-
-n<- nrow(df)
+n <- nrow(df)
 indexes <- sample(n,n*(80/100))
 trainset <- df[indexes,]
 testset <- df[-indexes,]
@@ -49,8 +49,7 @@ min(df$homekick) #0
 
 # As the outcome is binary, we create a glm model using binomial
 # family
-model <- glm(homekick ~ togo + ydline + kicker, data=trainset, family='binomial')
-
+model <- glm(homekick ~ togo + ydline + kicker, data = trainset, family = 'binomial')
 
 # (b) Specify the significant variables on homekick at the level
 # of 𝛼=0.05, and estimate the parameters of your model
@@ -69,7 +68,7 @@ summary(model)
 #   Estimate Std. Error z value Pr(>|z|)  
 # (Intercept)  0.13064    0.20628   0.633   0.5265  
 # togo        -0.04219    0.01795  -2.351   0.0187 *
-#   ydline       0.01156    0.00753   1.535   0.1247  
+# ydline       0.01156    0.00753   1.535   0.1247  
 # kicker      -0.00550    0.00620  -0.887   0.3750  
 # ---
 #   Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
@@ -83,11 +82,12 @@ summary(model)
 # 
 # Number of Fisher Scoring iterations: 
 
+
 # at alpha of 0.05 only togo is significant
 # Using this we can estimate the parameters as
-# Intercept = 0.13064, beta for togo is - 0.044219
+# Intercept = 0 (as non-sig), beta for togo is - 0.044219
 # all other non-sigificant parameters are set to 0
-# homekick = 0.13064 - 0.044219 * togo
+# homekick =  0 - 0.044219 * togo
 
 
 # Let's rerun the model removing the other non-signifcant items
@@ -165,3 +165,11 @@ confusionMatrix(data = as.factor(p_data),
 #        'Positive' Class : 0     
 
 # So this model has a 0.463783 prediction rate.
+
+
+
+# Save accuracy 1
+tab <- table(p_data, testset$homekick) # Confusion matrix
+tab
+model_accuracy <- sum( tab[row(tab) == col(tab)] ) / sum(tab)
+model_accuracy
