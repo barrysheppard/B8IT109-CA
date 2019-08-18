@@ -1,3 +1,10 @@
+###############################################################################
+# Description     : CA for B8IT109 Advanced Data Analytics
+# Lecturer        : Dr Shahram Azizi
+# Author          : Barry Sheppard - Student Number 10387786
+# Date            : 2019/08/18
+# Notes           : Question 2
+###############################################################################
 
 #######################################
 # Normal prep code                    #
@@ -164,12 +171,16 @@ confusionMatrix(data = as.factor(p_data),
 #                                           
 #        'Positive' Class : 0     
 
-# So this model has a 0.463783 prediction rate.
+# So this model has a 0.4783 prediction rate.
 
-
-
-# Save accuracy 1
+# The below is another way to do accuracy
 tab <- table(p_data, testset$homekick) # Confusion matrix
 tab
+
+# p_data  0  1
+#      0 52 60
+#      1 48 47
+
 model_accuracy <- sum( tab[row(tab) == col(tab)] ) / sum(tab)
-model_accuracy
+model_accuracy # 0.4783
+
