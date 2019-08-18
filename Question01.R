@@ -1,3 +1,10 @@
+###############################################################################
+# Description     : CA for B8IT109 Advanced Data Analytics
+# Lecturer        : Dr Shahram Azizi
+# Author          : Barry Sheppard - Student Number 10387786
+# Date            : 2019/08/18
+# Notes           : Question 1
+###############################################################################
 
 #######################################
 # Normal prep code                    #
@@ -79,7 +86,8 @@ sum(is.na(df$Day)) # 0 missing items
 describe(df$Temp)
 #     vars   n  mean   sd median trimmed mad min max range  skew kurtosis   se
 # X1    1  153 77.88 9.47     79   78.28 8.9  56  97    41 -0.37    -0.46 0.77
-
+mean(df$Temp)
+sd(df$Temp)
 # the mean temperature is 77.88 with a standard deviation of 9.47
 
 # Part d) 
