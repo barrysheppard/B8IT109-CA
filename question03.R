@@ -65,6 +65,9 @@ qqnorm(stock_prices, main = "Normal Q-Q Plot",
        ylab = "Sample Quantiles", plot.it = TRUE) 
 
 
+# although it's not necessarily correct on stock exchange data
+# we can look to see if there is any seasonal trend, we can at least
+# look at it
 fit <- stl(stock_prices, s.window = "periodic") 
 # This generates an error due to the lack of periods as its daily
 periodicity(stock_prices)
@@ -73,7 +76,9 @@ periodicity(stock_prices)
 yearly_stock_prices <- ts(as.numeric(stock_prices), frequency = 253)
 fit <- stl(yearly_stock_prices, s.window = "periodic", robust = TRUE) 
 plot(fit)
-# based on this we can there is a seasonal trend
+# it seems there is no seasonal apparent as the data is very similar to the trend
+# meaning the seasonal didn't account for much and the remainder is quite similar
+# to the original data also, suggesting the forced seasonal trend accounts for very little
 
 # (b) Fit the optimized model for ‘close price’ and provide
 #     the coefficient estimates for the fitted model.
@@ -133,4 +138,3 @@ auto.fit
 
 auto.fcast <- forecast(auto.fit, h =  10)
 plot(auto.fcast)
-
