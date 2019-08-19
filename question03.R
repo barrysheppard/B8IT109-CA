@@ -66,8 +66,7 @@ qqnorm(stock_prices, main = "Normal Q-Q Plot",
 
 
 # although it's not necessarily correct on stock exchange data
-# we can look to see if there is any seasonal trend, we can at least
-# look at it
+# we can look to see if there is any seasonal trend
 fit <- stl(stock_prices, s.window = "periodic") 
 # This generates an error due to the lack of periods as its daily
 periodicity(stock_prices)
